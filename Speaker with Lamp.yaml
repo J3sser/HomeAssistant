@@ -1,0 +1,58 @@
+blueprint:
+  name: Speaker with Lamp
+  description: Toggles a speaker with the Lamp
+  domain: automation
+  input:
+    lamp:
+      name: Lamp
+      description: The Lamp to which state the Speaker will be tied
+      selector:
+        entity:
+          filter:
+            - domain: light
+    speaker:
+      name: Speaker
+      description: The Speaker that will be toggled alongside the Lamp
+      selector:
+        entity:
+          filter:
+            device_class:
+              - domain: speaker
+
+triggers:
+  - trigger: state
+    entity_id:
+      - !input lamp
+    to: null
+    alias: When Light Changes
+conditions: []
+actions:
+  - alias: Copy speakers
+    choose:
+      - conditions:
+          - condition: state
+            entity_id: !input lamp
+            state:
+              - "on"
+        sequence:
+          - action: media_player.volume_mute
+            metadata: {}
+            target:
+              entity_id: !input speaker
+            data:
+              is_volume_muted: false
+            alias: Unmute Speakers
+      - conditions:
+          - condition: state
+            entity_id: !input lamp
+            state:
+              - "off"
+        sequence:
+          - action: media_player.volume_mute
+            metadata: {}
+            target:
+              entity_id: !input speaker
+            data:
+              is_volume_muted: true
+            alias: Mute Speakers
+mode: single
