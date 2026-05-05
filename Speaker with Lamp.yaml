@@ -6,9 +6,17 @@ blueprint:
     lamp:
       name: Lamp
       description: The Lamp to which state the Speaker will be tied
+      selector:
+        entity:
+          filter:
+            - domain: light
     speaker:
       name: Speaker
       description: The Speaker that will be toggled alongside the Lamp
+      selector:
+        entity:
+          filter:
+            - device_class: speaker
 triggers:
   - trigger: state
     entity_id:
@@ -25,7 +33,7 @@ actions:
               - "on"
         sequence:
           - action: media_player.volume_mute
-            metadata: {}
+            metadata: { }
             target:
               entity_id: !input speaker
             data:
@@ -38,7 +46,7 @@ actions:
               - "off"
         sequence:
           - action: media_player.volume_mute
-            metadata: {}
+            metadata: { }
             target:
               entity_id: !input speaker
             data:
