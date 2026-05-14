@@ -3,9 +3,9 @@
   description: Toggles a Lamp via an NFC-Tag
   domain: automation
   input:
-    nfc-tag:
-      name: NFC-Tag
-      description: The NFC-Tag that will toggle the Lamp
+    nfc-tags:
+      name: NFC-Tag(s)
+      description: The NFC-Tag(s) that will toggle the Lamp
       selector:
         entity:
           filter:
@@ -21,7 +21,7 @@
 
 triggers:
   - trigger: tag
-    tag_id: !input nfc_tag
+    tag_id: !input nfc_tags
 actions:
   - action: light.toggle
     target:
