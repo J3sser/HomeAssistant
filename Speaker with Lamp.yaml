@@ -11,12 +11,17 @@ blueprint:
           filter:
             - domain: light
     speaker:
-      name: Speaker
-      description: The Speaker that will be toggled alongside the Lamp
+      name: Speaker(s)
+      description: The Speaker(s) that will be toggled alongside the Lamp
       selector:
         entity:
           filter:
             - device_class: speaker
+        multiple: true
+
+variables:
+  speaker: !input 'speaker'
+
 triggers:
   - trigger: state
     entity_id:
@@ -33,9 +38,9 @@ actions:
               - "on"
         sequence:
           - action: media_player.volume_mute
-            metadata: { }
+            metadata: {}
             target:
-              entity_id: !input speaker
+              entity_id: '{{ expand(speaker) | map(attribute="entity_id") | list }}'
             data:
               is_volume_muted: false
             alias: Unmute Speakers
@@ -46,9 +51,9 @@ actions:
               - "off"
         sequence:
           - action: media_player.volume_mute
-            metadata: { }
+            metadata: {}
             target:
-              entity_id: !input speaker
+              entity_id: '{{ expand(speaker) | map(attribute="entity_id") | list }}'
             data:
               is_volume_muted: true
             alias: Mute Speakers
