@@ -19,12 +19,9 @@
           filter:
             - domain: light
 
-variables:
-  nfc-tag: !input 'nfc-tag'
-
 triggers:
   - trigger: tag
-    tag_id: '{{ expand(nfc-tag) | map(attribute="tag_id") | list }}'
+    tag_id: !input nfc_tag
 actions:
   - action: light.toggle
     target:
