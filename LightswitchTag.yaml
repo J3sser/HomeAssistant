@@ -3,13 +3,6 @@
   description: Toggles a Lamp via an NFC-Tag
   domain: automation
   input:
-    lamp:
-      name: Lamp
-      description: The Lamp that will be toggled via Tag
-      selector:
-        entity:
-          filter:
-            - domain: light
     nfc-tag:
       name: NFC-Tag
       description: The NFC-Tag that will toggle the Lamp
@@ -17,10 +10,18 @@
         entity:
           filter:
             - domain: tag
+              multiple: true
+    lamp:
+      name: Lamp
+      description: The Lamp that will be toggled via Tag
+      selector:
+        entity:
+          filter:
+            - domain: light
 
 triggers:
   - trigger: tag
-    tag_id: !input nfc-tag
+    tag_id: '{{ expand(speaker) | map(attribute="tag_id") | list }}'
 actions:
   - action: light.toggle
     target:
