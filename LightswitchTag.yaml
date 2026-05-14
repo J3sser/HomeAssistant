@@ -10,7 +10,7 @@
         entity:
           filter:
             - domain: light
-    NFC-Tag:
+    nfc-tag:
       name: NFC-Tag
       description: The NFC-Tag that will toggle the Lamp
       selector:
@@ -20,11 +20,12 @@
 
 triggers:
   - trigger: tag
-    tag_id: !input NFC-Tag
+    tag_id: !input nfc-tag
 conditions: []
+
 actions:
   - action: light.toggle
     target:
-      entity_id: !input Lamp
+      entity_id: !input lamp
     data: { }
 mode: single
