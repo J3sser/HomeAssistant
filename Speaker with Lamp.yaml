@@ -17,7 +17,7 @@ blueprint:
         entity:
           filter:
             - device_class: speaker
-              multiple: true
+        multiple: true
 
 variables:
   speaker: !input 'speaker'
