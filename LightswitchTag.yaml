@@ -3,7 +3,7 @@
   description: Toggles a Lamp via an NFC-Tag
   domain: automation
   input:
-    nfc-tags:
+    nfc_tags:
       name: NFC-Tag(s)
       description: The NFC-Tag(s) that will toggle the Lamp
       selector:
