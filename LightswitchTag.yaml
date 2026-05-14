@@ -5,7 +5,7 @@
   input:
     lamp:
       name: Lamp
-      description: The Lamp to which state the Speaker will be tied
+      description: The Lamp that will be toggled via Tag
       selector:
         entity:
           filter:
@@ -21,8 +21,6 @@
 triggers:
   - trigger: tag
     tag_id: !input nfc-tag
-conditions: []
-
 actions:
   - action: light.toggle
     target:
