@@ -1,0 +1,30 @@
+﻿blueprint:
+  name: Speaker with Lamp
+  description: Toggles a speaker with the Lamp
+  domain: automation
+  input:
+    lamp:
+      name: Lamp
+      description: The Lamp to which state the Speaker will be tied
+      selector:
+        entity:
+          filter:
+            - domain: light
+    NFC-Tag:
+      name: NFC-Tag
+      description: The NFC-Tag that will toggle the Lamp
+      selector:
+        entity:
+          filter:
+            - domain: tag
+
+triggers:
+  - trigger: tag
+    tag_id: !input NFC-Tag
+conditions: []
+actions:
+  - action: light.toggle
+    target:
+      entity_id: !input Lamp
+    data: { }
+mode: single
