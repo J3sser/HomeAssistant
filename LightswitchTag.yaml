@@ -19,9 +19,12 @@
           filter:
             - domain: light
 
+variables:
+  nfc-tag: !input 'nfc-tag'
+
 triggers:
   - trigger: tag
-    tag_id: '{{ expand(speaker) | map(attribute="tag_id") | list }}'
+    tag_id: '{{ expand(nfc-tag) | map(attribute="tag_id") | list }}'
 actions:
   - action: light.toggle
     target:
