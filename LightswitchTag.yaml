@@ -1,6 +1,6 @@
 ﻿blueprint:
-  name: Speaker with Lamp
-  description: Toggles a speaker with the Lamp
+  name: Lamp with NFC Tag
+  description: Toggles a Lamp via an NFC-Tag
   domain: automation
   input:
     lamp:
