@@ -23,7 +23,7 @@ variables:
   nfc_tags: !input 'nfc_tags'
 triggers:
   - trigger: event
-    event_type:
+    event_type: tag_scanned
 actions:
   - condition: template
     value_template: "{{ trigger.event.data.tag_id in expand(nfc_tags) | map(attribute='attributes.tag_id') | list }}"
