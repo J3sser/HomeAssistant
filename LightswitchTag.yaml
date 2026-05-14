@@ -27,4 +27,5 @@ actions:
     target:
       entity_id: !input lamp
     data: { }
-mode: single
+
+mode: restart
