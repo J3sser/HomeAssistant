@@ -16,8 +16,8 @@ blueprint:
       selector:
         entity:
           filter:
-            - device_class: speaker
-        multiple: true
+            - domain: media_player
+          multiple: true
 
 variables:
   speaker: !input 'speaker'

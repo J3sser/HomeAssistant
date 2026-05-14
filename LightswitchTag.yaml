@@ -10,7 +10,7 @@
         entity:
           filter:
             - domain: tag
-        multiple: true
+          multiple: true
     lamp:
       name: Lamp
       description: The Lamp that will be toggled via Tag
