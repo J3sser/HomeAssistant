@@ -21,12 +21,16 @@
 
 variables:
   nfc_tags: !input 'nfc_tags'
+
 triggers:
   - trigger: event
     event_type: tag_scanned
-actions:
+
+conditions:
   - condition: template
     value_template: "{{ trigger.event.data.tag_id in expand(nfc_tags) | map(attribute='attributes.tag_id') | list }}"
+
+actions:
   - action: light.toggle
     target:
       entity_id: !input lamp
